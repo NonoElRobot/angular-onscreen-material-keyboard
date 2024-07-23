@@ -11,7 +11,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noUnusedParameters": false,
-    "target": "es6",
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -20,18 +20,12 @@
       "dom"
     ],
     "paths": {
-      "angular-onscreen-material-keyboard": [
-        "./src/core/src/public_api.ts"
-      ]
+        "angular-onscreen-material-keyboard": [
+            "./projects/core/src/public-api.ts"
+        ]
     },
-    "module": "es2020"
-  },
-  "angularCompilerOptions": {
-    "paths": {
-      "angular-onscreen-material-keyboard": [
-        "./src/core/src/public_api.ts"
-      ]
-    }
+    "module": "es2020",
+    "useDefineForClassFields": false
   },
   "exclude": [
     ".ng_build"

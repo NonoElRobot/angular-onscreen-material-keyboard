@@ -1,12 +1,13 @@
-import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { AnimationCurves, AnimationDurations } from '@angular/material/core';
+import { AnimationEvent, animate, state, style, transition, trigger } from '@angular/animations';
 import { BasePortalOutlet, CdkPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentRef, EmbeddedViewRef, HostBinding, HostListener, NgZone, OnDestroy, ViewChild } from '@angular/core';
-import { AnimationCurves, AnimationDurations } from '@angular/material/core';
 import { Observable, Subject } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { MatKeyboardConfig } from '../../configs/keyboard.config';
+
 import { KeyboardAnimationState } from '../../enums/keyboard-animation-state.enum';
 import { KeyboardAnimationTransition } from '../../enums/keyboard-animation-transition.enum';
+import { MatKeyboardConfig } from '../../configs/keyboard.config';
+import { first } from 'rxjs/operators';
 
 // TODO: we can't use constants from animation.ts here because you can't use
 // a text interpolation in anything that is analyzed statically with ngc (for AoT compile).
@@ -103,7 +104,8 @@ export class MatKeyboardContainerComponent extends BasePortalOutlet implements O
 
       this._ngZone.run(() => {
         onEnter.next();
-        onEnter.complete();
+        onEnter.complete();        
+        this._changeDetectorRef.detectChanges();
       });
     }
   }
@@ -112,13 +114,14 @@ export class MatKeyboardContainerComponent extends BasePortalOutlet implements O
   enter() {
     if (!this._destroyed) {
       this._animationState = KeyboardAnimationState.Visible;
-      this._changeDetectorRef.detectChanges();
+      this._changeDetectorRef.markForCheck();
     }
   }
 
   /** Begin animation of the snack bar exiting from view. */
   exit(): Observable<void> {
     this._animationState = KeyboardAnimationState.Hidden;
+    this._changeDetectorRef.markForCheck();
     return this.onExit;
   }
 
@@ -141,6 +144,7 @@ export class MatKeyboardContainerComponent extends BasePortalOutlet implements O
       .subscribe(() => {
         this.onExit.next();
         this.onExit.complete();
+        this._changeDetectorRef.detectChanges();
       });
   }
 }
