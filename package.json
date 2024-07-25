@@ -1,6 +1,6 @@
 {
   "name": "@NonoElRobot/ngx-virtual-keyboard",
-  "version": "0.18.0-test",
+  "version": "0.18.2",
   "description": "This package is forked from ngx-material-keyboard with bug fixes and additional features.",
   "repository": {
     "type": "git",

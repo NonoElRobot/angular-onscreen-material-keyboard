@@ -99,9 +99,10 @@
  *   - Dutch and US Int'l keyboard layouts by jerone
  *
  */
+
+import { IKeyboardLayouts } from '../interfaces/keyboard-layouts.interface';
 import { InjectionToken } from '@angular/core';
 import { KeyboardClassKey } from '../enums/keyboard-class-key.enum';
-import { IKeyboardLayouts } from '../interfaces/keyboard-layouts.interface';
 
 const MAT_KEYBOARD_LAYOUTS = new InjectionToken<IKeyboardLayouts>('keyboard-layouts.config');
 const keyboardLayouts: IKeyboardLayouts = {
@@ -1807,8 +1808,9 @@ const keyboardLayouts: IKeyboardLayouts = {
         [KeyboardClassKey.Shift, KeyboardClassKey.Shift, KeyboardClassKey.Shift, KeyboardClassKey.Shift]
       ],
       [
+        [KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr],
         [KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space, KeyboardClassKey.Space],
-        [KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr, KeyboardClassKey.AltGr]
+        [KeyboardClassKey.CloseKeyboard, KeyboardClassKey.CloseKeyboard, KeyboardClassKey.CloseKeyboard, KeyboardClassKey.CloseKeyboard]
       ]
     ],
     'lang': ['fr']
